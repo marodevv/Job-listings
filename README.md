@@ -8,7 +8,7 @@
 
 # Live
 
-- https://marodevv-job-listing-app.pages.dev/
+- https://marodevv-job-listings-app.pages.dev/
 
 # Credit
 
