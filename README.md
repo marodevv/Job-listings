@@ -8,10 +8,10 @@
 
 # Live
 
-- https://marodevv-${project-name}.pages.dev/
+- https://marodevv-job-listing-app.pages.dev/
 
 # Credit
 
-- Inspired by ${website}
+- Inspired by Frontend Mentor
 
-- Website: ${link}
+- Website: https://frontendmentor.io
