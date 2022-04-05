@@ -1,5 +1,6 @@
 import tw, { styled } from 'twin.macro';
 import { nanoid } from 'nanoid';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const Job = ({ job, filteredLangs, setFilteredLangs }) => {
   const handleClick = langToAdd =>
@@ -8,33 +9,47 @@ const Job = ({ job, filteredLangs, setFilteredLangs }) => {
     );
 
   return (
-    <Wrapper>
-      <Logo logo={job.logo} />
-      <Details>
-        <Top>
-          <Company>{job.company}</Company>
-          {job.new && <New>NEW!</New>}
-          {job.featured && <Featured>Featured</Featured>}
-        </Top>
-        <Title>{job.position}</Title>
-        <More>
-          <Item>{job.postedAt}</Item>
-          <Item>{job.contract}</Item>
-          <Item>{job.location}</Item>
-        </More>
-      </Details>
+    <AnimatePresence>
+      <Wrapper
+        initial={{ opacity: 0, x: 250, skewY: 2 }}
+        animate={{
+          opacity: 1,
+          x: 0,
+          skewY: 0,
+          transition: {
+            duration: 0.25,
+            type: 'spring',
+            stiffness: 125,
+            delay: 0.4,
+          },
+        }}>
+        <Logo logo={job.logo} />
+        <Details>
+          <Top>
+            <Company>{job.company}</Company>
+            {job.new && <New>NEW!</New>}
+            {job.featured && <Featured>Featured</Featured>}
+          </Top>
+          <Title>{job.position}</Title>
+          <More>
+            <Item>{job.postedAt}</Item>
+            <Item>{job.contract}</Item>
+            <Item>{job.location}</Item>
+          </More>
+        </Details>
 
-      <Languages>
-        {job.languages.map(lang => (
-          <Lang
-            isFiltered={filteredLangs.includes(lang)}
-            onClick={() => handleClick(lang)}
-            key={nanoid()}>
-            {lang}
-          </Lang>
-        ))}
-      </Languages>
-    </Wrapper>
+        <Languages>
+          {job.languages.map(lang => (
+            <Lang
+              isFiltered={filteredLangs.includes(lang)}
+              onClick={() => handleClick(lang)}
+              key={nanoid()}>
+              {lang}
+            </Lang>
+          ))}
+        </Languages>
+      </Wrapper>
+    </AnimatePresence>
   );
 };
 
@@ -63,6 +78,8 @@ const Details = tw.div`flex flex-col justify-between items-start gap-xs`;
 
 const Logo = styled.img.attrs(({ logo }) => ({ src: logo }))``;
 
-const Wrapper = tw.div`bg-white mx-auto w-full max-w-job flex justify-between items-center gap-md lg:(gap-sm px-md) py-md px-lg rounded-md mob:(flex-col justify-center items-start) sm:!px-sm`;
+const Wrapper = tw(
+  motion.div
+)`bg-white mx-auto w-full max-w-job flex justify-between items-center gap-md lg:(gap-sm px-md) py-md px-lg rounded-md mob:(flex-col justify-center items-start) sm:!px-sm`;
 
 export default Job;

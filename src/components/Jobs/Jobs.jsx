@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid';
 import useNonInitialEffect from '../../hooks/use-non-initial-effect';
 import useAxios from '../../hooks/use-axios';
 import axios from '../../api/jobLister';
-import Job from '../Job';
+import Job from './Job';
 
 const Jobs = ({ setFilteredLangs, filteredLangs }) => {
   const [jobs, setJobs] = useState([]);
