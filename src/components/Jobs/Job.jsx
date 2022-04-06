@@ -1,6 +1,7 @@
 import tw, { styled } from 'twin.macro';
 import { nanoid } from 'nanoid';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
+import jobWrapper from '../../animations/jobWrapper';
 
 const Job = ({ job, filteredLangs, setFilteredLangs }) => {
   const handleClick = langToAdd =>
@@ -9,47 +10,33 @@ const Job = ({ job, filteredLangs, setFilteredLangs }) => {
     );
 
   return (
-    <AnimatePresence>
-      <Wrapper
-        initial={{ opacity: 0, x: 250, skewY: 2 }}
-        animate={{
-          opacity: 1,
-          x: 0,
-          skewY: 0,
-          transition: {
-            duration: 0.25,
-            type: 'spring',
-            stiffness: 125,
-            delay: 0.4,
-          },
-        }}>
-        <Logo logo={job.logo} />
-        <Details>
-          <Top>
-            <Company>{job.company}</Company>
-            {job.new && <New>NEW!</New>}
-            {job.featured && <Featured>Featured</Featured>}
-          </Top>
-          <Title>{job.position}</Title>
-          <More>
-            <Item>{job.postedAt}</Item>
-            <Item>{job.contract}</Item>
-            <Item>{job.location}</Item>
-          </More>
-        </Details>
+    <Wrapper variants={jobWrapper} initial='hidden' animate='shown'>
+      <Logo logo={job.logo} />
+      <Details>
+        <Top>
+          <Company>{job.company}</Company>
+          {job.new && <New>NEW!</New>}
+          {job.featured && <Featured>Featured</Featured>}
+        </Top>
+        <Title>{job.position}</Title>
+        <More>
+          <Item>{job.postedAt}</Item>
+          <Item>{job.contract}</Item>
+          <Item>{job.location}</Item>
+        </More>
+      </Details>
 
-        <Languages>
-          {job.languages.map(lang => (
-            <Lang
-              isFiltered={filteredLangs.includes(lang)}
-              onClick={() => handleClick(lang)}
-              key={nanoid()}>
-              {lang}
-            </Lang>
-          ))}
-        </Languages>
-      </Wrapper>
-    </AnimatePresence>
+      <Languages>
+        {job.languages.map(lang => (
+          <Lang
+            isFiltered={filteredLangs.includes(lang)}
+            onClick={() => handleClick(lang)}
+            key={nanoid()}>
+            {lang}
+          </Lang>
+        ))}
+      </Languages>
+    </Wrapper>
   );
 };
 

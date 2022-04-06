@@ -1,7 +1,9 @@
-import tw, { styled } from 'twin.macro';
+import tw from 'twin.macro';
 import { nanoid } from 'nanoid';
 import { ImCross } from 'react-icons/im';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
+import searchBar from '../../animations/searchBar';
+import { motion } from 'framer-motion';
 
 const SearchBar = ({ setFilteredLangs, filteredLangs }) => {
   const handleDelete = langToDelete =>
@@ -9,16 +11,9 @@ const SearchBar = ({ setFilteredLangs, filteredLangs }) => {
   const handleClear = () => setFilteredLangs([]);
 
   return (
-    <AnimatePresence>
+    <>
       {filteredLangs.length > 0 && (
-        <Wrapper
-          initial={{ opacity: 0, y: -100 }}
-          animate={{
-            opacity: 1,
-            y: -50,
-            transition: { duration: 0.2, type: 'linear' },
-          }}
-          exit={{ opacity: 0, y: -100 }}>
+        <Wrapper variants={searchBar} initial='hidden' animate='shown' exit='hidden'>
           <FilteredItems>
             {filteredLangs.map(lang => (
               <FilteredItem key={nanoid()}>
@@ -33,7 +28,7 @@ const SearchBar = ({ setFilteredLangs, filteredLangs }) => {
           <Clear onClick={handleClear}>Clear</Clear>
         </Wrapper>
       )}
-    </AnimatePresence>
+    </>
   );
 };
 
