@@ -1,17 +1,22 @@
 # Job listing app
 
-- Created with React, Tailwind & Styled Components using *vite*🔥
+- Fully responsive & animated
 
-- Fully responsive and animated
+- Tech used with *vite*🔥:
+  React
+  Tailwind & Styled Components
+  Framer motion
 
-- Additional stuff (hovers, animations, effects, etc...)
+# Features
+
+- Fetching a json file to display jobs
 
 # Live
 
-- https://marodevv-job-listings-app.pages.dev/
+- https://marodevv-url-shortening-landing-page.pages.dev/
 
 # Credit
 
 - Inspired by Frontend Mentor
 
-- Website: https://frontendmentor.io
+- Website: https://www.frontendmentor.io/
