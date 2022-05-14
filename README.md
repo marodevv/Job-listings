@@ -10,7 +10,7 @@
 
 # Live
 
-- https://marodevv-job-listings-app.pages.dev/
+- https://marodevv-job-listings-app.vercel.app
 
 # Credit
 
