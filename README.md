@@ -12,7 +12,7 @@
 
 ## Live
 
-> https://marodevv-job-listings-app.vercel.app
+> https://marwanmodev-job-listings-app.vercel.app
 
 ## Credit
 
